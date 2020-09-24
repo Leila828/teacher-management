@@ -4,6 +4,8 @@ const mongoose=require ("mongoose");
 const Teacher =require('../models/teacher');
 const Cours =require('../models/cours');
 var db=mongoose.connect("mongodb://localhost:27017/bdd1");
+//const passport=require('passport');
+//const jwt=require('jsonwebtoken');
 
 mongoose.Promise=global.Promise;
 //get all teachers
@@ -19,6 +21,23 @@ if (err){
 
   res.json(teachers);
 }
+  });
+});
+
+
+
+//get all courses of all teachers
+router.get('/cours',function (req,res) {
+  console.log('get request for all vidro');
+
+
+  Cours.find({}).exec(function (err,courses) {
+    if (err){
+      console.log('Error retrieving courses');
+    }else {
+
+      res.json(courses);
+    }
   });
 });
 

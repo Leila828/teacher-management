@@ -11,7 +11,8 @@ const app= express();
 
 console.log("version mongoose: "+mongoose.version);
 
-
+//app.use(passport.initialize());
+//app.use(passport.session());
 app.use(express.static(path.join(__dirname,'dist')));
 
 app.use(bodyParser.urlencoded({extended:true}));
