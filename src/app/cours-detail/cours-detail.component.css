@@ -1,0 +1,16 @@
+.main-panel {
+  transition: width 1s ease, margin 0.25s ease;
+  width: calc(100% - 1px);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.content-wrapper {
+  background: #f2edf3;
+  padding: 3rem 3rem;
+  width: 100%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}

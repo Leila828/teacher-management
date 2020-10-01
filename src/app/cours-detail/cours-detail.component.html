@@ -1,0 +1,83 @@
+
+<div class="main-panel  ">
+  <div class="content-wrapper">
+<div class="container-fluid">
+
+  <!-- Portfolio Item Heading -->
+
+
+  <h1 style="color:#0b2e13 ; text-align: center" >
+    <ul class="nav nav-pills nav-stacked">
+      <li *ngIf="currentCours" >
+
+   {{currentCours[0].title}}
+
+
+      </li>
+    </ul>
+
+  </h1>
+  <br>
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+
+    <div class="col-md-8" *ngIf="currentCours">
+      <iframe width="100%" height="800"  [src]="currentCours[0].url   | safe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+      </iframe>
+
+    </div>
+
+    <div class="col-md-4" *ngIf="currentCours">
+      <h2 >Project Description</h2>
+
+      <br>
+      <h4>  {{currentCours[0].caption}}</h4>
+      <button (click)=" onClick()" type="submit" class="btn btn-success btn-lg" style="padding: 20px ;margin: 20px">Update Course</button>
+      <button (click)="deleteCours()" class="btn btn-danger btn-lg" style="padding: 20px ;margin: 20px">Delete Course</button>
+
+      <div id="taggele" style="display: none">
+        <div class=" grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">UPDATE THIS COURSE</h4>
+              <p class="card-description">
+
+              </p>
+              <form #myform="ngForm" class="forms-sample">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Course Title" name="title"  [(ngModel)]="currentCours[0].title">
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Course Descreption" name="descreption"  [(ngModel)]="currentCours[0].caption">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Course URL" name="url"  [(ngModel)]="currentCours[0].url">
+                </div>
+
+
+                <button (click)="updateCours()" type="submit" class="btn btn-success mr-2">Submit</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+
+
+
+</div>
+<!-- /.container -->
+
+  </div>
+</div>
+
