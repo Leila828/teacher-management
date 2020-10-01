@@ -9,7 +9,12 @@ var db=mongoose.connect("mongodb://localhost:27017/bdd1");
 
 mongoose.Promise=global.Promise;
 //get all teachers
-
+router.all('/*',function (req, res, next) {
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTION');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers','Content-Type,X-Requested-With');
+  next();
+});
 router.get('/teachers',function (req,res) {
   console.log('get request for all vidro');
 
@@ -28,7 +33,7 @@ if (err){
 
 //get all courses of all teachers
 router.get('/cours',function (req,res) {
-  console.log('get request for all vidro');
+  console.log('get request for all courses');
 
 
   Cours.find({}).exec(function (err,courses) {
@@ -37,6 +42,21 @@ router.get('/cours',function (req,res) {
     }else {
 
       res.json(courses);
+
+    }
+  });
+});
+router.get('/cours/:courseId',function (req,res) {
+  console.log('get cours');
+
+
+  Cours.find({ _id:req.params.courseId,}).exec(function (err,c) {
+    if (err){
+      console.log('Error retrieving cours');
+    }else {
+
+      res.json(c);
+
     }
   });
 });
@@ -187,7 +207,6 @@ router.get('/teacher/:id/courses/:courseId',function (req,res) {
     }
   });
 });
-
 
 
 
