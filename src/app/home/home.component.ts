@@ -16,6 +16,13 @@ declare const myFunction: any;
 })
 export class HomeComponent implements OnInit {
   public  SelectCours = new  EventEmitter();
+  registerUserData = {
+    Nom: '',
+    Prenom: '',
+    Email: '',
+    password: '',
+    Module: ''
+  };
   cours = {
     title: '',
     caption: '',
@@ -56,5 +63,10 @@ export class HomeComponent implements OnInit {
   onClick() {
     myFunction();
     this.newCours();
+  }
+  registerUser() {
+    console.log(this.registerUserData);
+    this._coursService.createTeacher(this.registerUserData)
+      .subscribe(res => console.log(res), err => console.log(err));
   }
 }

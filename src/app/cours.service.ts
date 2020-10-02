@@ -75,4 +75,10 @@ return this.http.patch(`http://localhost:3000/api/teacher/5f73b274bb21661c24e3c2
 delete(id) {
     return this.http.delete(`http://localhost:3000/api/teacher/5f73b274bb21661c24e3c269/courses/${id}`);
 }
+  createTeacher(teacher) {
+    return this.http.post('http://localhost:3000/api/teacher', teacher);
+  }
+  login(teacher) {
+    return this.http.post('http://localhost:3000/api/login', teacher);
+  }
 }

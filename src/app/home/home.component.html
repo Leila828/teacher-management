@@ -1,81 +1,35 @@
 
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 
-
-
-<div class="container-fluid  ">
-<div class="row">
-  <div class="col-lg-0 " >
-
-  </div>
-  <div class="main-panel  ">
-    <div class="content-wrapper">
-  <button (click)="onClick()" class="btn btn-success  ">+ Add a Course</button>
-
-  <div class="col-lg-12">
-
-
-    <div id="taggele" style="display: none">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">ADD NEW COURSE</h4>
-            <p class="card-description">
-
-            </p>
-            <form #myform="ngForm" class="forms-sample">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Course Title" name="title"  [(ngModel)]="cours.title">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Course Descreption" name="descreption"  [(ngModel)]="cours.caption">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Course URL" name="url"  [(ngModel)]="cours.url">
-              </div>
-
-
-              <button (click)="saveCours()" type="submit" class="btn btn-success mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
-            </form>
-          </div>
+<!-- main -->
+<div class="main-w3layouts wrapper">
+  <h1>Creative SignUp Form</h1>
+  <div class="main-agileinfo">
+    <div class="agileits-top">
+      <form action="#" method="post">
+        <input [(ngModel)]="registerUserData.Nom"  name="Nom" class="text" style="color: #ffffff" type="text" name="Nom" placeholder="Nom" required="">
+       <br>
+        <input [(ngModel)]="registerUserData.Prenom"  name="Prenom"  style="color: #ffffff" class="text" type="text"  placeholder="Prenom" required="">
+        <input [(ngModel)]="registerUserData.Email"  name="Email" class="text email"  style="color: #ffffff" type="text" placeholder="Email" required="">
+        <input [(ngModel)]="registerUserData.password"  name="password"  style="color: #ffffff" class="text" type="password"  placeholder="Password" required="">
+       <br>
+        <input [(ngModel)]="registerUserData.Module"  class="text " type="text" name="Module"  style="color: #ffffff" placeholder="Module" required="">
+        <div class="wthree-text">
+          <label class="anim">
+            <input type="checkbox" class="checkbox" required="">
+            <span>I Agree To The Terms & Conditions</span>
+          </label>
+          <div class="clear"> </div>
         </div>
-      </div>
+        <input (click)="registerUser()"  type="submit" value="SIGNUP">
+      </form>
+      <p>Don't have an Account? <a href="#"> Login Now!</a></p>
     </div>
-
-    <div class="  d-lg-flex p-2 ">
-    <ul class="nav" style="padding-left: 120px">
-      <li (click)="onSelect(cours)" *ngFor="let cours of course">
-
-
-
-
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto ">
-      <div class="ver_mas text-center" *ngFor="let cours of course">
-
-        <span  class="lnr lnr-eye" >
-
-        </span>
-      </div>
-      <article class="text-left">
-       <h2 style="color: #1b1e21">{{cours.title}}
-       </h2>
-        <h4>{{cours.title}} a small introduction</h4>
-      </article>
-      <img [src]=myimg  alt="">
-    </div>
-
-
-
-
-      </li>
-    </ul>
-
   </div>
-  </div>
-  </div>
-</div>
-  <div class="col-lg-0 " >
 
-</div>
-</div>
 </div>

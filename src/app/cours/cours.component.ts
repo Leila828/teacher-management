@@ -1,5 +1,7 @@
 import { Component, OnInit , EventEmitter} from '@angular/core';
 import {Cours} from '../cours';
+import {CoursService} from '../cours.service';
+import {Router} from '@angular/router';
 
 function date(s: string) {
   return undefined;
@@ -16,6 +18,10 @@ function date(s: string) {
 })
 export class CoursComponent implements OnInit {
   public  SelectCours = new EventEmitter();
+  loginUserData = {
+    Email: '',
+    password: ''
+  };
   selectedCours: Cours;
 // @ts-ignore
   // @ts-ignore
@@ -30,7 +36,8 @@ export class CoursComponent implements OnInit {
 
 
 
-  constructor() { }
+  // tslint:disable-next-line:variable-name
+  constructor(private  _coursService: CoursService, private  router: Router) { }
 
   ngOnInit(): void {
   }
@@ -40,5 +47,11 @@ export class CoursComponent implements OnInit {
   onSelectCours(cours: any) {
     this.selectedCours = cours;
     console.log(this.selectedCours);
+  }
+  logIn() {
+    console.log(this.loginUserData);
+    this._coursService.login(this.loginUserData)
+      .subscribe(res => console.log(res),
+        error => console.log(error));
   }
 }

@@ -79,6 +79,27 @@ if(err){
 }
   });
 });
+//Login
+router.post('/login',(req,res) => {
+  let userData = req.body;
+  Teacher.findOne({Email: userData.Email},(error , teacher) => {
+    if(error) {
+      console.log(error)
+    }else {
+      if(!teacher) {
+        res.status(400).send('Invalid email')
+      } else
+        if(teacher.password !== userData.password) {
+          res.status(401).send('invalid password')
+        }else {
+          res.status(200).send(teacher)
+        }
+    }
+  })
+
+});
+
+
 //updat a teacher
 router.put('/teacher/:id',function (req,res) {
 
