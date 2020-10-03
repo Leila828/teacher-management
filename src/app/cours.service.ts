@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Cours} from './cours';
 import {Observable, of} from 'rxjs';
-
+import {HttpInterceptor} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,14 @@ import {Observable, of} from 'rxjs';
 export class CoursService {
   // tslint:disable-next-line:variable-name
   private _getUrl = './server/routes/api/cours';
-  constructor(private  http: HttpClient) { }
+  constructor(private  http: HttpClient, private  router: Router) { }
  getCourses() {
     return this.http.get<Cours[]>('http://localhost:3000/api/cours')
+      .pipe(map((response => response)
+      ));
+ }
+ getCoursesToken() {
+    return this.http.get<Cours[]>('http://localhost:3000/api/teachers/courses')
       .pipe(map((response => response)
       ));
  }
@@ -67,18 +73,29 @@ export class CoursService {
    console.log(message);
   }
   create(cours) {
-return this.http.post('http://localhost:3000/api/teachers/5f73b274bb21661c24e3c269/courses', cours);
+return this.http.post('http://localhost:3000/api/teachers/courses', cours);
 }
   update(cours, id) {
-return this.http.patch(`http://localhost:3000/api/teacher/5f73b274bb21661c24e3c269/courses/${id}`, cours);
+return this.http.patch(`http://localhost:3000/api/teacher/courses/${id}`, cours);
 }
 delete(id) {
-    return this.http.delete(`http://localhost:3000/api/teacher/5f73b274bb21661c24e3c269/courses/${id}`);
+    return this.http.delete(`http://localhost:3000/api/teacher/courses/${id}`);
 }
   createTeacher(teacher) {
-    return this.http.post('http://localhost:3000/api/teacher', teacher);
+    return this.http.post<any>('http://localhost:3000/api/teacher', teacher);
   }
   login(teacher) {
-    return this.http.post('http://localhost:3000/api/login', teacher);
+    return this.http.post<any>('http://localhost:3000/api/login', teacher);
   }
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+   getToken() {
+    return localStorage.getItem('token');
+   }
+   logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+   }
 }

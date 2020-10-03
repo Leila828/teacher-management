@@ -37,7 +37,10 @@ export class CoursDetailComponent implements OnInit {
   }
   getCoursId(id) {
     // tslint:disable-next-line:max-line-length
-    this._coursService.getById(id).subscribe(data => { this.currentCours = data; console.log( this.currentCours[0].url + '&output=embed'); }, error => {console.log(error); });
+    this._coursService.getById(id)
+      // tslint:disable-next-line:max-line-length
+      .subscribe(data => { this.currentCours = data;
+                           console.log( this.currentCours[0].url + '&output=embed'); }, error => {console.log(error); });
   }
   updateCoursO(status) {
     const data = {
@@ -64,7 +67,7 @@ deleteCours() {
     this._coursService.delete(this.currentCours[0]._id)
       .subscribe(response => {
         console.log(response);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/list']);
       });
 }
   onClick() {

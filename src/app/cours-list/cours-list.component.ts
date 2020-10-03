@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Cours} from '../cours';
 import {CoursService} from '../cours.service';
 import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Teacher} from '../teacher';
 declare const myFunction: any;
 @Component({
   selector: 'app-cours-list',
@@ -28,10 +30,20 @@ export class CoursListComponent implements OnInit {
 // @ts-ignore
   // @ts-ignore
   course: Array<Cours>;
+  teacher: Array<Teacher>;
   // tslint:disable-next-line:variable-name
   constructor(private  _coursService: CoursService, private  router: Router) { }
   ngOnInit() {
-    this._coursService.getCourses().subscribe(resCoursData => this.course = resCoursData);
+    this._coursService.getCoursesToken()
+      .subscribe(resCoursData => this.course = resCoursData,
+        error => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 401) {
+            this.router.navigate(['/login']);
+          }
+        }
+        }
+        );
 
   }
   onSelect(cours) {

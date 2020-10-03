@@ -1,7 +1,9 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Cours} from '../cours';
 import {Router} from '@angular/router';
 import {CoursService} from '../cours.service';
+
+
 declare const myFunction: any;
 @Component({
   selector: 'app-home',
@@ -67,6 +69,11 @@ export class HomeComponent implements OnInit {
   registerUser() {
     console.log(this.registerUserData);
     this._coursService.createTeacher(this.registerUserData)
-      .subscribe(res => console.log(res), err => console.log(err));
+      .subscribe(res => {
+                         localStorage.setItem('token', res.token);
+                         this.router.navigate(['/list']);
+        }
+        ,
+          err => console.log(err));
   }
 }
