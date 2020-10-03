@@ -1,8 +1,9 @@
 
 
-<h1>HERE IS YOUR LIST</h1>
+
 
 <div class="container-fluid  ">
+
   <div class="row">
     <div class="col-lg-0 " >
 
@@ -24,13 +25,16 @@
                   </p>
                   <form #myform="ngForm" class="forms-sample">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Course Title" name="title"  [(ngModel)]="cours.title">
+                      <input type="text" #title="ngModel" class="form-control" placeholder="Course Title" name="title"  [(ngModel)]="cours.title" required>
+
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control" placeholder="Course Descreption" name="descreption"  [(ngModel)]="cours.caption">
+                      <input type="text" #caption="ngModel" class="form-control" placeholder="Course Descreption" name="descreption"  [(ngModel)]="cours.caption">
+
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Course URL" name="url"  [(ngModel)]="cours.url">
+                      <input type="text" #url="ngModel" class="form-control" placeholder="Course URL" name="url"  [(ngModel)]="cours.url">
+
                     </div>
 
 

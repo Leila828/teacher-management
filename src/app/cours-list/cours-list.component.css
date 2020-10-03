@@ -1,5 +1,13 @@
 
+@media print {
 
+  .card {
+    display: none;
+  }
+  button {
+    display: none;
+  }
+}
 
 
 body {

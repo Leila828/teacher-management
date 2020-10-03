@@ -1,3 +1,12 @@
+@media print {
+  .col-md-8 {
+    display: none;
+  }
+  button {
+    display: none;
+  }
+
+}
 .main-panel {
   transition: width 1s ease, margin 0.25s ease;
   width: calc(100% - 1px);

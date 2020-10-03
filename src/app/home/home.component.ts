@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor(private  _coursService: CoursService, private  router: Router) { }
   ngOnInit() {
-    this._coursService.getCourses().subscribe(resCoursData => this.course = resCoursData);
+    this._coursService.getCoursesToken().subscribe(resCoursData => this.course = resCoursData);
 
   }
   onSelect(cours) {

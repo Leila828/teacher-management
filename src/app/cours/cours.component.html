@@ -2,8 +2,14 @@
   <div class="form">
 
     <form class="login-form">
-      <input [(ngModel)]="loginUserData.Email"  name="Email" type="text" placeholder="Email"/>
-      <input [(ngModel)]="loginUserData.password"  name="password" type="password" placeholder="password"/>
+      <input [(ngModel)]="loginUserData.Email" #Email="ngModel" name="Email" type="text" placeholder="Email" required/>
+      <div class="alert alert-danger" *ngIf="Email.touched && !Email.valid">
+        <div *ngIf="Email.errors.required"> Email is Required</div>
+         </div>
+      <input [(ngModel)]="loginUserData.password" #password="ngModel" name="password" type="password" placeholder="password" required/>
+      <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+        <div *ngIf="password.errors.required"> password is Required</div>
+            </div>
       <button (click)="logIn()" >login</button>
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>

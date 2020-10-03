@@ -22,7 +22,7 @@ function verifyToken(req, res, next) {
   }
   let token = req.headers.authorization.split(' ')[1]
   if(token === 'null') {
-    return  res.stat(401).send('Unauthorized req')
+    return  res.status(401).send('Unauthorized req')
   }
   let payload = jwt.verify(token, 'secretKey')
   if(!payload) {
