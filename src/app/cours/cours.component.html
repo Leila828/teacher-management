@@ -1,6 +1,17 @@
-<div class="container-fluid text-center" >
-  <div class="row">
-    <div class="col-lg-8 bg-secondary">Hello</div>
-    <div class="col-lg-4 bg-success">HELO</div>
+<div class="login-page">
+  <div class="form">
+
+    <form class="login-form">
+      <input [(ngModel)]="loginUserData.Email" #Email="ngModel" name="Email" type="text" placeholder="Email" required/>
+      <div class="alert alert-danger" *ngIf="Email.touched && !Email.valid">
+        <div *ngIf="Email.errors.required"> Email is Required</div>
+         </div>
+      <input [(ngModel)]="loginUserData.password" #password="ngModel" name="password" type="password" placeholder="password" required/>
+      <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+        <div *ngIf="password.errors.required"> password is Required</div>
+            </div>
+      <button (click)="logIn()" >login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
   </div>
 </div>

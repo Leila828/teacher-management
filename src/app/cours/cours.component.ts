@@ -1,5 +1,7 @@
 import { Component, OnInit , EventEmitter} from '@angular/core';
 import {Cours} from '../cours';
+import {CoursService} from '../cours.service';
+import {Router} from '@angular/router';
 
 function date(s: string) {
   return undefined;
@@ -12,25 +14,20 @@ function date(s: string) {
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['course'],
   // tslint:disable-next-line:no-outputs-metadata-property
-  outputs: ['SelectCours']
+  outputs: ['SelectCours', `cours`]
 })
 export class CoursComponent implements OnInit {
   public  SelectCours = new EventEmitter();
+  loginUserData = {
+    Email: '',
+    password: ''
+  };
   selectedCours: Cours;
-// @ts-ignore
-  // @ts-ignore
-  course: Cours[] = [
-    // tslint:disable-next-line:max-line-length
-  {_id: '1', title: 'titre 1', url: 'url', caption: 'caption here', createdAt: new Date('12020-09-22T23:06:46.372Z'), _teacherId: 'jkghjhh'},
-    // tslint:disable-next-line:max-line-length
-  {_id: '2', title: 'titre 2', url: 'url', caption: 'caption here', createdAt: new Date('12020-09-22T23:06:46.372Z'), _teacherId: 'jkghjhh'},
-    // tslint:disable-next-line:max-line-length
-  {_id: '3', title: 'titre 3', url: 'url', caption: 'caption here', createdAt: new Date('12020-09-22T23:06:46.372Z'), _teacherId: 'jkghjhh'}
-];
+  course: Array<Cours>;
 
 
-
-  constructor() { }
+  // tslint:disable-next-line:variable-name
+  constructor(private  _coursService: CoursService, private  router: Router) { }
 
   ngOnInit(): void {
   }
@@ -40,5 +37,15 @@ export class CoursComponent implements OnInit {
   onSelectCours(cours: any) {
     this.selectedCours = cours;
     console.log(this.selectedCours);
+  }
+  logIn() {
+    console.log(this.loginUserData);
+    this._coursService.login(this.loginUserData)
+      .subscribe(res => { console.log(res);
+                          localStorage.setItem('token', res.token);
+                          this.router.navigate(['/list']);
+
+        },
+        error => console.log(error));
   }
 }

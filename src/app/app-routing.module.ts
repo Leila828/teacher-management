@@ -4,14 +4,19 @@ import {HomeComponent} from './home/home.component';
 import {CoursComponent} from './cours/cours.component';
 import {ProfileComponent} from './profile/profile.component';
 import {CoursDetailComponent} from './cours-detail/cours-detail.component';
+import {CoursListComponent} from './cours-list/cours-list.component';
+import {AuthGuard} from './auth.guard';
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'cours', component: CoursComponent},
+  {path: 'register', component: HomeComponent},
+  {path: 'login', component: CoursComponent},
   {path: 'profil', component: ProfileComponent},
+  {path: 'list',
+    component: CoursListComponent,
+    canActivate: [AuthGuard]},
   {path: 'cours/:_id', component: CoursDetailComponent},
 ];
 

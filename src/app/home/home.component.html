@@ -1,81 +1,63 @@
 
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 
-
-
-<div class="container-fluid  ">
-<div class="row">
-  <div class="col-lg-0 " >
-
-  </div>
-  <div class="main-panel  ">
-    <div class="content-wrapper">
-  <button (click)="onClick()" class="btn btn-success  ">+ Add a Course</button>
-
-  <div class="col-lg-12">
-
-
-    <div id="taggele" style="display: none">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">ADD NEW COURSE</h4>
-            <p class="card-description">
-
-            </p>
-            <form #myform="ngForm" class="forms-sample">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Course Title" name="title"  [(ngModel)]="cours.title">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Course Descreption" name="descreption"  [(ngModel)]="cours.caption">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Course URL" name="url"  [(ngModel)]="cours.url">
-              </div>
-
-
-              <button (click)="saveCours()" type="submit" class="btn btn-success mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
-            </form>
-          </div>
+<!-- main -->
+<div class="main-w3layouts wrapper">
+  <h1>Creative SignUp Form</h1>
+  <div class="main-agileinfo">
+    <div class="agileits-top">
+      <form action="#" method="post">
+        <input [(ngModel)]="registerUserData.Nom"  name="Nom" #Nom="ngModel" class="text" style="color: #ffffff" type="text" name="Nom" placeholder="Nom" required minlength="3" maxlength="20">
+      <div class="alert alert-danger" *ngIf="Nom.touched && !Nom.valid">
+       <div *ngIf="Nom.errors.required"> Nom is Required</div>
+       <div *ngIf="Nom.errors.minlength"> min length should be 3</div>
+       <div *ngIf="Nom.errors.maxlength"> maxlength should ne 20 </div>
+      </div>
+       <br>
+        <input [(ngModel)]="registerUserData.Prenom"  name="Prenom" #Prenom="ngModel" style="color: #ffffff" class="text" type="text"  placeholder="Prenom" required required minlength="3" maxlength="20">
+        <div class="alert alert-danger" *ngIf="Prenom.touched && !Prenom.valid">
+          <div *ngIf="Prenom.errors.required"> Nom is Required</div>
+          <div *ngIf="Prenom.errors.minlength"> min length should be 3</div>
+          <div *ngIf="Prenom.errors.maxlength"> maxlength should ne 20 </div>
         </div>
-      </div>
+        <input [(ngModel)]="registerUserData.Email"  name="Email" #Email="ngModel" class="text email"  style="color: #ffffff" type="text" placeholder="Email" required>
+        <div class="alert alert-danger" *ngIf="Email.touched && !Email.valid">
+          <div *ngIf="Email.errors.required"> Email is Required</div>
+          <div *ngIf="Email.errors.minlength"> min length should be 3</div>
+          <div *ngIf="Email.errors.maxlength"> maxlength should ne 20 </div>
+        </div>
+        <input [(ngModel)]="registerUserData.password"  name="password" #password="ngModel" style="color: #ffffff" class="text" type="password"  placeholder="Password"
+               required
+               minlength="3"
+               pattern="([a-z_ ]*)+([A-Z])+([0-9])+([a-zA-Z0-9_ ]*)">
+        <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+          <div *ngIf="password.errors.required"> password is Required</div>
+          <div *ngIf="password.errors.minlength"> min length should be 3</div>
+          <div *ngIf="password.errors.pattern"> this field must contien uper/lower case and numbers </div>
+        </div>
+       <br>
+        <input [(ngModel)]="registerUserData.Module"  #Module="ngModel" class="text " type="text" name="Module"  style="color: #ffffff" placeholder="Module" required  minlength="3" maxlength="20">
+        <div class="alert alert-danger" *ngIf="Module.touched && !Module.valid">
+          <div *ngIf="Module.errors.required">Module is Required</div>
+          <div *ngIf="Module.errors.minlength"> min length should be 3</div>
+          <div *ngIf="Module.errors.maxlength"> maxlength should ne 20 </div>
+        </div>
+        <div class="wthree-text">
+          <label class="anim">
+            <input type="checkbox" class="checkbox" required="">
+            <span>I Agree To The Terms & Conditions</span>
+          </label>
+          <div class="clear"> </div>
+        </div>
+        <input (click)="registerUser()"  type="submit" value="SIGNUP">
+      </form>
+      <p>Don't have an Account? <a href="#"> Login Now!</a></p>
     </div>
-
-    <div class="  d-lg-flex p-2 ">
-    <ul class="nav" style="padding-left: 120px">
-      <li (click)="onSelect(cours)" *ngFor="let cours of course">
-
-
-
-
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto ">
-      <div class="ver_mas text-center" *ngFor="let cours of course">
-
-        <span  class="lnr lnr-eye" >
-
-        </span>
-      </div>
-      <article class="text-left">
-       <h2 style="color: #1b1e21">{{cours.title}}
-       </h2>
-        <h4>{{cours.title}} a small introduction</h4>
-      </article>
-      <img [src]=myimg  alt="">
-    </div>
-
-
-
-
-      </li>
-    </ul>
-
   </div>
-  </div>
-  </div>
-</div>
-  <div class="col-lg-0 " >
 
-</div>
-</div>
 </div>

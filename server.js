@@ -3,7 +3,7 @@ const bodyParser =require('body-parser');
 var mongoose=require ("mongoose");
 var https = require("https");
 const path = require('path');
-
+const  cors = require('cors');
 const api= require('./server/routes/api');
 const port=3000;
 
@@ -14,7 +14,7 @@ console.log("version mongoose: "+mongoose.version);
 //app.use(passport.initialize());
 //app.use(passport.session());
 app.use(express.static(path.join(__dirname,'dist')));
-
+app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.all('/*',function (req, res, next) {

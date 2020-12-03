@@ -1,7 +1,9 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Cours} from '../cours';
 import {Router} from '@angular/router';
 import {CoursService} from '../cours.service';
+
+
 declare const myFunction: any;
 @Component({
   selector: 'app-home',
@@ -16,6 +18,13 @@ declare const myFunction: any;
 })
 export class HomeComponent implements OnInit {
   public  SelectCours = new  EventEmitter();
+  registerUserData = {
+    Nom: '',
+    Prenom: '',
+    Email: '',
+    password: '',
+    Module: ''
+  };
   cours = {
     title: '',
     caption: '',
@@ -31,7 +40,7 @@ export class HomeComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor(private  _coursService: CoursService, private  router: Router) { }
   ngOnInit() {
-    this._coursService.getCourses().subscribe(resCoursData => this.course = resCoursData);
+    this._coursService.getCoursesToken().subscribe(resCoursData => this.course = resCoursData);
 
   }
   onSelect(cours) {
@@ -56,5 +65,15 @@ export class HomeComponent implements OnInit {
   onClick() {
     myFunction();
     this.newCours();
+  }
+  registerUser() {
+    console.log(this.registerUserData);
+    this._coursService.createTeacher(this.registerUserData)
+      .subscribe(res => {
+                         localStorage.setItem('token', res.token);
+                         this.router.navigate(['/list']);
+        }
+        ,
+          err => console.log(err));
   }
 }
